@@ -195,8 +195,6 @@ public final class Logger {
     }
 }
 
-// MARK: - Configuration
-
 extension Logger {
     
     public struct Configuration {
@@ -237,8 +235,6 @@ extension Logger {
     }
 }
 
-// MARK: - Level
-
 extension Logger {
     
     /// Logging level.
@@ -267,8 +263,6 @@ extension Logger {
     }
 }
 
-// MARK: - Comparable
-
 extension Logger.Level: Comparable {
 }
 
@@ -287,8 +281,6 @@ public func >(lhs: Logger.Level, rhs: Logger.Level) -> Bool {
 public func >=(lhs: Logger.Level, rhs: Logger.Level) -> Bool {
     return lhs.rawValue >= rhs.rawValue
 }
-
-// MARK: - Details
 
 extension Logger {
     
