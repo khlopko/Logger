@@ -4,6 +4,14 @@
 
 import Foundation
 
+public var Log = Logger { config -> Void in
+#if DEBUG
+    config.minimalLogLevel = .debug
+#else
+    config.minimalLogLevel = .none
+#endif
+}
+
 public final class Logger {
 
     /// Logger configuration parameters.
@@ -11,7 +19,8 @@ public final class Logger {
     
     fileprivate let formatter = DateFormatter()
     
-    public init() {
+    public init(_ setup: (inout Configuration) -> Void) {
+        setup(&config)
         formatter.dateFormat = dateFormat
     }
     
@@ -201,12 +210,12 @@ extension Logger {
         
         /// Should be date included to log message. Default is `false`
         public var showDate = false {
-            didSet { log.updateDateFormatter() }
+            didSet { Log.updateDateFormatter() }
         }
         
         /// Should be time included to log message. Default is `true`
         public var showTime = true {
-            didSet { log.updateDateFormatter() }
+            didSet { Log.updateDateFormatter() }
         }
         
         /// Should be date and included to log message. Default is `true`
